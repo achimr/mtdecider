@@ -110,3 +110,8 @@ Corpus-level TER results get stored in the `ter.csv` file in the `base_path` fol
 
 Corpus-level COMET results get stored in the `comet.csv` file in the `base_path` folder. Segment-level COMET scores are stored in files named `comet_<MT engine identifier>[.<domain>].<source language id>-<target language id>` in the folder that contains the machine translations.
 
+## Analysis and Charting
+The details of analysis and charting very much depend on the use case and collected data. Therefore only an example Jupyter notebook of a simple BLEU score analysis and charting is included. It uses [pandas](https://pandas.pydata.org/) and [matplotlib](https://matplotlib.org/).
+
+`bleu_analysis.ipynb` [![](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/achimr/mtdecider/blob/main/analysis/bleu_analysis.ipynb)
+

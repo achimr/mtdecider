@@ -39,7 +39,7 @@ en,it,wmt09
 ```
 
 ### Translation
-Translation with generic online MT engines: `mtd_translate.ipynb` [![](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/achimr/mtdecider/blob/main/nbs/mtd_translate.ipynb)
+Translation with generic online MT engines: `mtd_translate.ipynb` [![](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/achimr/mtdecider/blob/main/translate/mtd_translate.ipynb)
 * Currently MT Decider supports Amazon Translate, DeepL, Google Translate, Microsoft Translator and ModernMT
 * The engines to use for translating can be selected in the Jupyter notebook
 
@@ -61,5 +61,22 @@ base_path
       +-hyp_<engine name>.<source language id>-<target language id>.<target language id>
 ```
 
-### Adaptive translation with ModernMT
+### Adaptive machine translation
+Machine translation services are _adaptive_ if they are able to receive feedback in the form of corrected translations and immediately improve subsequent machine translations based on the feedback. This feature is especially useful for MT post-editing workflows. 
+
+Among the MT services in currently supported in MT Decider only ModernMT provides adaptive MT.
+
+#### Managing TMs in  ModernMT
+Jupyter notebook to list and delete TMs in ModernMT: `modernmt_manage_tms.ipynb` [![](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/achimr/mtdecider/blob/main/translate/mtd_manage_tms.ipynb)
+
+If users already have TMs that are related to the translation project, they can upload these TMs as reference TMs with this Jupyter notebook: `modernmt_upload_reference_tm.ipynb` [![](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/achimr/mtdecider/blob/main/translate/mtd_upload_reference_tms.ipynb). Reference TMs are a form of MT customization, however no customization process is needed and the MT system adapts to the reference TM translations only when appropriate.
+
+#### Adaptive translation with ModernMT
+Translation with adaptive MT: `mtd_adaptive_translate.ipynb` [![](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/achimr/mtdecider/blob/main/translate/mtd_adaptive_translate.ipynb)
+
+ModernMT requires an adaptation translation memory (TM) to store the feedback for adaptation. Using this Jupyter notebook, an adaptation TM is automatically created for each language pair that is processed.
+
+Reference TMs for the translation can be specified with their numeric TM ID (will be output by the `modernmt_upload_reference_tm.ipynb` upon TM upload).
+
+
 ## Evaluation with automatic metrics

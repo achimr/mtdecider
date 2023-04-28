@@ -67,9 +67,9 @@ Machine translation services are _adaptive_ if they are able to receive feedback
 Among the MT services in currently supported in MT Decider only ModernMT provides adaptive MT.
 
 #### Managing TMs in  ModernMT
-Jupyter notebook to list and delete TMs in ModernMT: `modernmt_manage_tms.ipynb` [![](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/achimr/mtdecider/blob/main/translate/mtd_manage_tms.ipynb)
+Jupyter notebook to list and delete TMs in ModernMT: `modernmt_manage_tms.ipynb` [![](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/achimr/mtdecider/blob/main/translate/modernmt_manage_tms.ipynb)
 
-If users already have TMs that are related to the translation project, they can upload these TMs as reference TMs with this Jupyter notebook: `modernmt_upload_reference_tm.ipynb` [![](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/achimr/mtdecider/blob/main/translate/mtd_upload_reference_tms.ipynb). Reference TMs are a form of MT customization, however no customization process is needed and the MT system adapts to the reference TM translations only when appropriate.
+If users already have TMs that are related to the translation project, they can upload these TMs as reference TMs with this Jupyter notebook: `modernmt_upload_reference_tm.ipynb` [![](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/achimr/mtdecider/blob/main/translate/modernmt_upload_reference_tm.ipynb). Reference TMs are a form of MT customization, however no customization process is needed and the MT system adapts to the reference TM translations only when appropriate.
 
 #### Adaptive translation with ModernMT
 Translation with adaptive MT: `mtd_adaptive_translate.ipynb` [![](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/achimr/mtdecider/blob/main/translate/mtd_adaptive_translate.ipynb)
@@ -80,3 +80,33 @@ Reference TMs for the translation can be specified with their numeric TM ID (wil
 
 
 ## Evaluation with automatic metrics
+Machine translations can be either evaluated by humans or, if source texts and human reference translations are available, with automatic metrics. Currently MT Decider supports the popular BLEU, TER and COMET metrics.
+
+### Evaluation set CSV
+Similar to translation, automated evaluation is driven by a evaluation set CSV named `datasets.csv` in the `base_path` folder:
+```
+<source language id>,<target language id>,<test set name>,<translation date in ISO 8601 format>,<domain if applicable>
+```
+E.g. for the English→German WMT20 and English→Italian WMT09 test sets translated with MT on April 27th, 2023:
+```
+en,de,wmt20,2023-04-27,
+en,it,wmt09,2023-04-27,
+```
+
+### Evaluation Jupyter notebooks
+
+#### BLEU
+`mtd_bleu.ipynb` [![](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/achimr/mtdecider/blob/main/evaluate/mtd_bleu.ipynb)
+
+BLEU is a corpus-level metric and results get stored in the `bleu.csv` file in the `base_path` folder.
+
+#### TER
+`mtd_ter.ipynb` [![](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/achimr/mtdecider/blob/main/evaluate/mtd_ter.ipynb)
+
+Corpus-level TER results get stored in the `ter.csv` file in the `base_path` folder. Segment-level TER scores are stored in files named `ter_<MT engine identifier>[.<domain>].<source language id>-<target language id>` in the folder that contains the machine translations.
+
+#### COMET
+`mtd_comet.ipynb` [![](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/achimr/mtdecider/blob/main/evaluate/mtd_comet.ipynb) - keep in mind that a GPU is required, so set the runtime type in Google Colab accordingly (in Edit/Notebook settings choose GPU as a Hardware accelerator).
+
+Corpus-level COMET results get stored in the `comet.csv` file in the `base_path` folder. Segment-level COMET scores are stored in files named `comet_<MT engine identifier>[.<domain>].<source language id>-<target language id>` in the folder that contains the machine translations.
+
